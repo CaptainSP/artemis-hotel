@@ -1,0 +1,123 @@
+<div class="chart-container">
+  <div class="charts">
+    <div class="column">
+      <mat-card class="chart-card mat-elevation-z0">
+        <mat-card-header>
+          <mat-card-title>Incomes By Type</mat-card-title>
+        </mat-card-header>
+        <canvas id="MyChart" #canvas2>{{ chart }}</canvas>
+      </mat-card>
+    </div>
+    <div class="column">
+      <mat-card class="chart-card mat-elevation-z0">
+        <mat-card-header>
+          <mat-card-title>Expenses By Type</mat-card-title>
+        </mat-card-header>
+        <canvas id="MyChart" #canvas3>{{ chart }}</canvas>
+      </mat-card>
+    </div>
+    <div class="column">
+      <mat-card class="chart-card mat-elevation-z0">
+        <mat-card-header>
+          <mat-card-title>Yearly</mat-card-title>
+          <mat-card-subtitle>Incomes / Expenses By Year</mat-card-subtitle>
+        </mat-card-header>
+        <canvas id="MyChart" #canvas1>{{ chart }}</canvas>
+      </mat-card>
+    </div>
+  </div>
+
+  <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      multiTemplateDataRows
+    >
+      <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="content">
+        <th mat-header-cell *matHeaderCellDef>Content</th>
+        <td mat-cell *matCellDef="let element">{{ element.content }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [class.avaible]="element.availability"
+        >
+         {{element.date}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+          &nbsp;
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            aria-label="expand row"
+            (click)="
+              expandedElement = expandedElement === element ? null : element;
+              $event.stopPropagation()
+            "
+          >
+            <mat-icon *ngIf="expandedElement !== element"
+              >keyboard_arrow_down</mat-icon
+            >
+            <mat-icon *ngIf="expandedElement === element"
+              >keyboard_arrow_up</mat-icon
+            >
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [attr.colspan]="columnsToDisplayWithExpand.length"
+        >
+          <div
+            class="example-element-detail"
+            [@detailExpand]="
+              element == expandedElement ? 'expanded' : 'collapsed'
+            "
+          >
+            
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+      <tr
+        mat-row
+        *matRowDef="let element; columns: columnsToDisplayWithExpand"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['expandedDetail']"
+        class="example-detail-row"
+      ></tr>
+    </table>
+</div>

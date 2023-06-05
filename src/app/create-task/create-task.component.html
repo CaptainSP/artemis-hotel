@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Create New Task</h2>
+<form [formGroup]="taskForm" (ngSubmit)="submit()">
+  <mat-dialog-content class="mat-typography">
+    <div class="inputs">
+      <div class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input
+            formControlName="title"
+            type="text"
+            matInput
+            placeholder="Title"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input
+            formControlName="description"
+            type="text"
+            matInput
+            placeholder="Description"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button type="submit" [mat-dialog-close]="true" cdkFocusInitial>
+      Send Task
+    </button>
+  </mat-dialog-actions>
+</form>

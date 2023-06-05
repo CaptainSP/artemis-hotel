@@ -1,0 +1,73 @@
+<app-navbar>
+  <div class="cont">
+    <h1 class="welcome">Welcome back, {{ authService.name }}!</h1>
+    <div class="panel" *ngIf="hasPermission()">
+      <h2>Overview - Occupancy</h2>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-card class="mat-elevation-z0">
+            <h3 class="c-title">New Customers</h3>
+            <h1 class="count">350 <span class="green">23%</span></h1>
+          </mat-card>
+        </div>
+        <div class="col-sm-4">
+          <mat-card class="mat-elevation-z0">
+            <h3 class="c-title">Empty Rooms</h3>
+            <h1 class="count">100 </h1>
+          </mat-card>
+        </div>
+        <div class="col-sm-4">
+          <mat-card class="mat-elevation-z0">
+            <h3 class="c-title">Reserved Rooms</h3>
+            <h1 class="count">100 <span class="red">-23%</span></h1>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Overview - Finance</h2>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-card class="mat-elevation-z0">
+            <h3 class="c-title">Total Income</h3>
+            <h1 class="count">$1500 <span class="red">-5%</span></h1>
+          </mat-card>
+        </div>
+        <div class="col-sm-4">
+          <mat-card class="mat-elevation-z0">
+            <h3 class="c-title">Total Expenses</h3>
+            <h1 class="count">$1400 <span class="red">-45%</span></h1>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel " *ngIf="hasPermission()">
+      <h2>Overview - Maintenance</h2>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-card class="mat-elevation-z0">
+            <h3 class="c-title">Completed Jobs</h3>
+            <h1 class="count">16</h1>
+          </mat-card>
+        </div>
+        <div class="col-sm-4">
+          <mat-card class="mat-elevation-z0">
+            <h3 class="c-title">Waiting Jobs</h3>
+            <h1 class="count">12</h1>
+          </mat-card>
+        </div>
+        <div class="col-sm-4">
+          <mat-card class="mat-elevation-z0">
+            <h3 class="c-title">Avaible Employees</h3>
+            <h1 class="count">10</h1>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-navbar>

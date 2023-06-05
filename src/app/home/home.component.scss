@@ -1,0 +1,61 @@
+.cont {
+  padding: 4%;
+  position: relative;
+  display: block;
+}
+
+.panel {
+    margin-top: 16px;
+}
+
+h2 {
+
+    font-weight: 400;
+}
+
+.welcome {
+  font-weight: 500;
+}
+
+mat-card {
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.c-title {
+  font-weight: 400;
+  margin: 2px;
+}
+
+.count {
+  color: #75a9f9;
+}
+
+.green {
+  font-size: 10px;
+  border-radius: 12px;
+  // semi transparent light green background
+  padding: 3px 10px 3px 10px;
+  background-color: rgba(0, 255, 0, 0.3);
+
+  // dark green text
+  color: #006400;
+
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.red {
+    font-size: 10px;
+    border-radius: 12px;
+    // semi transparent light red background
+    padding: 3px 10px 3px 10px;
+    background-color: rgba(255, 0, 0, 0.3);
+    
+    // dark red text
+    color: #8b0000;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 5px;
+}

@@ -1,0 +1,93 @@
+.container {
+    padding: 4%;
+  }
+  
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  
+    .buttons {
+      .primary {
+        background-color: #212529;
+      }
+  
+      .report {
+        background-color: #f79327;
+      }
+  
+      button {
+        margin-right: 10px;
+      }
+    }
+  
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+  
+  .register {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .register-button {
+    background-color: #47a992 !important;
+    margin-bottom: 10px;
+  }
+  
+  .avaible {
+    background-color: #98eecc;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  
+  .create {
+    background-color: #47a992 !important;
+  }

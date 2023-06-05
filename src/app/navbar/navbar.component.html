@@ -1,0 +1,34 @@
+<app-toolbar [drawer]="drawer"></app-toolbar>
+<mat-drawer-container class="sidenav-container" autosize>
+  <mat-drawer
+    #drawer
+    class="sidenav"
+    mode="side"
+    style="width: 300px"
+    [opened]="!isMobile()"
+  >
+    <div class="nav-list">
+      <a class="item" routerLink="/" [class.active]="isPageActive('home')"><mat-icon>home</mat-icon> Home</a>
+      <a class="item" *ngIf="hasPermission()" routerLink="/occupancy" [class.active]="isPageActive('occupancy')"
+        ><mat-icon>chair</mat-icon> Occupancy Management
+      </a>
+
+      <a class="item" routerLink="/finance" [class.active]="isPageActive('finance')"
+        ><mat-icon>monetization_on</mat-icon> Finance Management
+      </a>
+
+      <a class="item" *ngIf="hasPermission()" routerLink="/tasks" [class.active]="isPageActive('tasks')"
+        ><mat-icon>task_alt</mat-icon> Task Management
+      </a>
+
+    </div>
+
+    <div class="footer">
+      <p>Copyright 2023</p>
+    </div>
+  </mat-drawer>
+
+  <div style="min-height: 100vh; width: 100%" class="sidenav-content">
+    <ng-content></ng-content>
+  </div>
+</mat-drawer-container>

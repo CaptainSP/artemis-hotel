@@ -1,0 +1,25 @@
+<mat-toolbar class="toolbar">
+  <div routerLink="/" class="logo">
+    <img src="assets/logo.svg" alt="" />
+  </div>
+  <button mat-icon-button (click)="toggleDrawer()">
+    <mat-icon style="color: white">menu</mat-icon>
+  </button>
+  <div class="page-title" *ngIf="isPageActive() && (isMobile() | async)">
+    <h5>{{ getTitle() }}</h5>
+    <p>{{ getDescription() }}</p>
+  </div>
+  <div class="spacer"></div>
+  <div *ngIf="isPageActive()" class="user-area">
+    <div class="avatar">
+      <img src="assets/avatar.png" alt="" />
+    </div>
+    <div [matMenuTriggerFor]="menu" class="user-details">
+      <h5>{{ authService.name }}</h5>
+      <p>{{ authService.role }}</p>
+    </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
