@@ -8,23 +8,48 @@
     [opened]="!isMobile()"
   >
     <div class="nav-list">
-      <a class="item" routerLink="/" [class.active]="isPageActive('home')"><mat-icon>home</mat-icon> Home</a>
-      <a class="item" *ngIf="hasPermission()" routerLink="/occupancy" [class.active]="isPageActive('occupancy')"
+      <a class="item" routerLink="/" [class.active]="isPageActive('home')"
+        ><mat-icon>home</mat-icon> Home</a
+      >
+      <a
+        class="item"
+        *ngIf="hasPermission()"
+        routerLink="/occupancy"
+        [class.active]="isPageActive('occupancy')"
         ><mat-icon>chair</mat-icon> Occupancy Management
       </a>
 
-      <a class="item" routerLink="/finance" [class.active]="isPageActive('finance')"
+      <a
+        class="item"
+        routerLink="/finance"
+        [class.active]="isPageActive('finance')"
         ><mat-icon>monetization_on</mat-icon> Finance Management
       </a>
 
-      <a class="item" *ngIf="hasPermission()" routerLink="/tasks" [class.active]="isPageActive('tasks')"
+      <a
+        class="item"
+        *ngIf="hasPermission()"
+        routerLink="/tasks"
+        [class.active]="isPageActive('tasks')"
         ><mat-icon>task_alt</mat-icon> Task Management
       </a>
 
-      <a class="item" *ngIf="hasPermission()" routerLink="/inventory" [class.active]="isPageActive('inventory')"
+      <a
+        class="item"
+        *ngIf="hasPermission()"
+        routerLink="/inventory"
+        [class.active]="isPageActive('inventory')"
         ><mat-icon>shopping_basket</mat-icon> Inventory Management
       </a>
 
+      <a class="item" [matMenuTriggerFor]="menu">
+        <mat-icon>language</mat-icon> Change Language
+      </a>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Turkish</button>
+        <button mat-menu-item>English</button>
+      </mat-menu>
     </div>
 
     <div class="footer">
