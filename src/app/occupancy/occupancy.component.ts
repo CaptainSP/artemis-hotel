@@ -5,6 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 export interface RoomElement {
@@ -30,11 +31,29 @@ const ELEMENT_DATA: RoomElement[] = [
     occupiedBy: { name: 'John Doe' },
   },
   { position: 4, building: 'A', floor: 9, availability: true },
-  { position: 5, building: 'D', floor: 10, availability: false },
-  { position: 6, building: 'D', floor: 12, availability: false },
+  {
+    position: 5,
+    building: 'D',
+    floor: 10,
+    availability: false,
+    occupiedBy: { name: 'John Doe' },
+  },
+  {
+    position: 6,
+    building: 'D',
+    floor: 12,
+    availability: false,
+    occupiedBy: { name: 'John Doe' },
+  },
   { position: 7, building: 'F', floor: 14, availability: true },
   { position: 8, building: 'B', floor: 15, availability: true },
-  { position: 9, building: 'C', floor: 18, availability: false },
+  {
+    position: 9,
+    building: 'C',
+    floor: 18,
+    availability: false,
+    occupiedBy: { name: 'John Doe' },
+  },
   { position: 10, building: 'A', floor: 20, availability: true },
 ];
 
@@ -54,6 +73,8 @@ const ELEMENT_DATA: RoomElement[] = [
   ],
 })
 export class OccupancyComponent {
+  constructor(private http: HttpClient) {}
+
   displayedColumns: string[] = [
     'position',
     'building',
@@ -96,10 +117,28 @@ export class OccupancyComponent {
     );
   }
 
-  avaibility = false
+  avaibility = false;
   public filterByAvaibility() {
-    this.avaibility = !this.avaibility
-    this.dataSource = ELEMENT_DATA.filter((item) => this.avaibility == true ? item.availability : true);
+    this.avaibility = !this.avaibility;
+    this.dataSource = ELEMENT_DATA.filter((item) =>
+      this.avaibility == true ? item.availability : true
+    );
   }
 
+  downloadReport() {
+    const fileUrl = './assets/occupancy_excel.xlsx';
+    this.http.get(fileUrl, { responseType: 'blob' }).subscribe((response) => {
+      this.saveFile(response);
+      console.log(fileUrl);
+    });
+  }
+
+  private saveFile(blob: Blob) {
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'occupancy_excel.xlsx';
+    link.click();
+    window.URL.revokeObjectURL(link.href);
+    link.remove();
+  }
 }

@@ -1,4 +1,5 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 export interface BillingElement {
@@ -62,6 +63,8 @@ const ELEMENT_DATA: BillingElement[] = [
   ],
 })
 export class BillingComponent {
+  constructor(private http: HttpClient) {}
+
   displayedColumns: string[] = [
     'position',
     'content',
@@ -102,5 +105,22 @@ export class BillingComponent {
     return (
       this.getAvaibleRooms() + '/' + ELEMENT_DATA.length + ' rooms available'
     );
+  }
+
+  downloadReport() {
+    const fileUrl = './assets/billing_excel.xlsx';
+    this.http.get(fileUrl, { responseType: 'blob' }).subscribe((response) => {
+      this.saveFile(response);
+      console.log(fileUrl);
+    });
+  }
+
+  private saveFile(blob: Blob) {
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'billing_excel.xlsx';
+    link.click();
+    window.URL.revokeObjectURL(link.href);
+    link.remove();
   }
 }

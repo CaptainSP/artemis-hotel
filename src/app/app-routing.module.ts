@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { OccupancyComponent } from './occupancy/occupancy.component';
 import { FinanceComponent } from './finance/finance.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,14 @@ const routes: Routes = [
     data: {
       title: 'Tasks and Maintenance',
       description: 'Manage tasks and maintenance of the hotel',
+    },
+  },
+  {
+    path: 'inventory',
+    component: InventoryComponent,
+    data: {
+      title: 'Inventory Management',
+      description: 'Manage inventory',
     },
   },
 ];

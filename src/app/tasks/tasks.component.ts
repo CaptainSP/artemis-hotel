@@ -2,6 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskComponent } from '../create-task/create-task.component';
+import { HttpClient } from '@angular/common/http';
 
 export interface TaskElement {
   // room number, occupancy status, cleaning status, maintenance status, fault description and request
@@ -28,7 +29,7 @@ const ELEMENT_DATA: TaskElement[] = [
     position: 2,
     roomNumber: 2,
     occupancyStatus: 'Occupied',
-    cleaningStatus: 'Cleaned',
+    cleaningStatus: 'Uncleaned',
     maintenanceStatus: 'Maintained',
     faultDescription: 'Broken',
     request: 'Request',
@@ -46,7 +47,7 @@ const ELEMENT_DATA: TaskElement[] = [
     position: 4,
     roomNumber: 4,
     occupancyStatus: 'Occupied',
-    cleaningStatus: 'Cleaned',
+    cleaningStatus: 'Uncleaned',
     maintenanceStatus: 'Maintained',
     faultDescription: 'Broken',
     request: 'Request',
@@ -125,7 +126,7 @@ export class TasksComponent {
   ];
   dataSource = ELEMENT_DATA;
 
-  constructor(public dialog:MatDialog) {
+  constructor(public dialog:MatDialog, private http: HttpClient) {
 
   }
 
@@ -135,5 +136,22 @@ export class TasksComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  downloadReport() {
+    const fileUrl = './assets/tasks_excel.xlsx';
+    this.http.get(fileUrl, { responseType: 'blob' }).subscribe((response) => {
+      this.saveFile(response);
+      console.log(fileUrl);
+    });
+  }
+
+  private saveFile(blob: Blob) {
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'tasks_excel.xlsx';
+    link.click();
+    window.URL.revokeObjectURL(link.href);
+    link.remove();
   }
 }

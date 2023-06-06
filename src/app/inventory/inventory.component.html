@@ -1,0 +1,39 @@
+<app-navbar>
+    <div class="container">
+      <button mat-flat-button color="accent" id="addNewItem" style="margin: 8px;" (click)="openDialog()">Add New Item</button>
+      <button mat-flat-button color="accent" id="report" (click)="downloadReport()">Report</button>
+  
+      <br>
+      <br>
+      <table  mat-table [dataSource]="dataSource">
+        <!-- room number, occupancy status, cleaning status, maintenance status, fault description and request-->
+  
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="productName">
+          <th mat-header-cell *matHeaderCellDef>Product Name</th>
+          <td mat-cell *matCellDef="let element">
+            <a class="item" (click)="openProductDialog(element)"> {{ element.productName }} </a>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numberOfItems">
+            <th mat-header-cell *matHeaderCellDef># left</th>
+            <td mat-cell *matCellDef="let element">{{ element.numberOfItems }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+          </ng-container>
+
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </app-navbar>
+  

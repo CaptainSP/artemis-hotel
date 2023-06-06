@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Add New Product</h2>
+<form [formGroup]="productForm" (ngSubmit)="submit()">
+  <mat-dialog-content class="mat-typography">
+    <div class="inputs">
+      <div class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Product Name</mat-label>
+          <input
+            formControlName="1"
+            type="text"
+            matInput
+            placeholder="2"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Number of Items</mat-label>
+          <input
+            formControlName="3"
+            type="text"
+            matInput
+            placeholder="4"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button type="submit" [mat-dialog-close]="true" cdkFocusInitial>
+      Add Product
+    </button>
+  </mat-dialog-actions>
+</form>

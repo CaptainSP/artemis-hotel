@@ -31,6 +31,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
+import { InventoryComponent } from './inventory/inventory.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     FinanceTabComponent,
     TableComponent,
     TasksComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    InventoryComponent,
+    AddProductComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

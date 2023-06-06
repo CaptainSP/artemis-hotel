@@ -2,7 +2,7 @@
   <div class="top">
     <div class="buttons">
       <button mat-flat-button color="accent" class="create">Create New Invoice</button>
-      <button mat-flat-button color="accent" class="report">Report</button>
+      <button mat-flat-button color="accent" class="report" (click)="downloadReport()">Report</button>
 
       
     </div>
@@ -43,7 +43,7 @@
 
     <!-- Weight Column -->
     <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef>Amount</th>
+      <th mat-header-cell *matHeaderCellDef>Price</th>
       <td mat-cell *matCellDef="let element">{{ element.amount }}$</td>
     </ng-container>
 

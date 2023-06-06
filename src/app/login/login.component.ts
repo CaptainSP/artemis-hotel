@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Route, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(public fb: FormBuilder, public authService: AuthService, public router:Router) {}
+  constructor(public fb: FormBuilder, public authService: AuthService, public router:Router, private _snackBar: MatSnackBar) {}
 
   public emailError?: string;
   public passwordError?: string;
@@ -34,6 +35,9 @@ export class LoginComponent {
         this.router.navigate(['/']);
       } else {
         this.passwordError = 'Password is incorrect';
+        this._snackBar.open(this.passwordError, 'Close', {
+          duration: 5000,
+        });
       }
     } else if (email == 'ahmet@gmail.com') {
       if (password == '159753') {
@@ -46,9 +50,15 @@ export class LoginComponent {
         this.router.navigate(['/']);
       } else {
         this.passwordError = 'Password is incorrect';
+        this._snackBar.open(this.passwordError, 'Close', {
+          duration: 5000,
+        });
       }
     } else {
       this.emailError = 'Email is incorrect';
+      this._snackBar.open(this.emailError, 'Close', {
+        duration: 5000,
+      });
     }
   }
 }

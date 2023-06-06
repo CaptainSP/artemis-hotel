@@ -21,6 +21,10 @@
         ><mat-icon>task_alt</mat-icon> Task Management
       </a>
 
+      <a class="item" *ngIf="hasPermission()" routerLink="/inventory" [class.active]="isPageActive('inventory')"
+        ><mat-icon>shopping_basket</mat-icon> Inventory Management
+      </a>
+
     </div>
 
     <div class="footer">
